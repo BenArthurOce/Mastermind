@@ -1,15 +1,17 @@
 from cls_game import *
+from cls_display import *
 
 class Turn():
     def __init__(self, turn_num):
         self.turn_num = turn_num
+        self.display = Display()
 
 
     def player_makes_guess(self, game:Game) -> list:
         """Player types in colours to terminal to make a guess"""
 
         # display available colours
-        game.print_game_instructions_to_terminal()
+        self.display.print_game_instructions_to_terminal()
 
         # take user input, seperate based on commas and trim
         while True:
@@ -74,20 +76,20 @@ class Turn():
         num_hits = sum(1 for s in guessed01 if '!!' in s)
         num_misses = sum(1 for s in guessed01 if '??' in s)
 
-        game.guess_history_dictionary[i]['hits'] = num_hits
-        game.guess_history_dictionary[i]['misses'] = num_misses
+        game.previousGuessDict[i]['hits'] = num_hits
+        game.previousGuessDict[i]['misses'] = num_misses
 
 
     def update_guess_dictionary_with_guesses(self, game:Game, list_guesses:list) -> None:
         i = self.turn_num
         if len(list_guesses) == 3:
-            game.guess_history_dictionary[i]['peg1'] = list_guesses[0]
-            game.guess_history_dictionary[i]['peg2'] = list_guesses[1]
-            game.guess_history_dictionary[i]['peg3'] = list_guesses[2]
+            game.previousGuessDict[i]['peg1'] = list_guesses[0]
+            game.previousGuessDict[i]['peg2'] = list_guesses[1]
+            game.previousGuessDict[i]['peg3'] = list_guesses[2]
         elif len(list_guesses) == 4:
-            game.guess_history_dictionary[i]['peg1'] = list_guesses[0]
-            game.guess_history_dictionary[i]['peg2'] = list_guesses[1]
-            game.guess_history_dictionary[i]['peg3'] = list_guesses[2]
-            game.guess_history_dictionary[i]['peg4'] = list_guesses[3]
+            game.previousGuessDict[i]['peg1'] = list_guesses[0]
+            game.previousGuessDict[i]['peg2'] = list_guesses[1]
+            game.previousGuessDict[i]['peg3'] = list_guesses[2]
+            game.previousGuessDict[i]['peg4'] = list_guesses[3]
 
 

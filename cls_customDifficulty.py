@@ -3,21 +3,21 @@ import random
 class CustomDifficulty():
     def __init__(self):
         self.list_every_colour = ['RED', 'BLUE', 'YELLOW', 'GREEN', 'ORANGE', 'PURPLE', 'CYAN', 'WHITE', 'MAROON', 'AQUA', 'INDIGO', 'VIOLET', 'TEAL']
-        self.game_settings_dict = {'difficulty': 'Custom', 'list_available_colours':[], 'num_max_colours':0, 'num_max_guesses':0, 'num_pegs':0, 'isRepeatColours':False}
+        self.game_settings_dict = {'difficulty': 'Custom', 'list_available_colours':[], 'num_max_gemstone':0, 'num_max_guesses':0, 'num_pegs':0, 'isRepeatColours':False}
 
 
     def player_to_select_game_element_types(self) -> None:
 
         a = len(self.list_every_colour)
 
-        self.game_settings_dict['num_max_colours'] = int(self.user_input_number_with_restrictions(range(5, a+1),"How many Colours in this game? Max={0}".format(a)))
+        self.game_settings_dict['num_max_gemstone'] = int(self.user_input_number_with_restrictions(range(5, a+1),"How many Colours in this game? Max={0}".format(a)))
 
         self.game_settings_dict['num_max_guesses'] = int(self.user_input_number_with_restrictions(range(2, 15+1), "How many Guesses in this game? Max={0}".format(15)))
 
         self.game_settings_dict['num_pegs'] = int(self.user_input_string_with_restrictions(['3', '4'], "How many Pegs in this game? (3 or 4)"))
 
 
-        b = self.game_settings_dict['num_max_colours']
+        b = self.game_settings_dict['num_max_gemstone']
         input_available_colours = self.user_input_string_with_restrictions(['Y', 'N'], "Do you the default colour list (Y), or a random list of colours? (N)")
 
         # game colours are default list from main colour list        
